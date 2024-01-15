@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('comment');
             $table->integer('note');
             $table->unsignedBigInteger('restaurant_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-            $table->foreign('restaurant_id')->references('id')->on('restaurants');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

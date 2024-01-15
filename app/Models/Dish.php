@@ -30,4 +30,8 @@ class Dish extends Model
     public function restaurant(): BelongsTo {
         return $this->belongsTo(Restaurant::class);
     }
+
+    public function ratings(): HasMany {
+        return $this->hasMany(DishRating::class);
+    }
 }

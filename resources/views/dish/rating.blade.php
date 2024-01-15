@@ -16,7 +16,7 @@
     <form
         action="{{ route('restaurant.dish.rating.store', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug]) }}" method="POST">
         @csrf
-        @include('components.rating', ['name' => 'rating', 'label' => 'Votre note', 'hidden' => true])
+        @include('components.rating', ['name' => 'note', 'label' => 'Votre note', 'hidden' => true])
         @include('components.textarea', ['name' => 'comment', 'label' => 'Votre commentaire'])
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>

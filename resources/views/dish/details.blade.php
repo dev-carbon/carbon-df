@@ -35,7 +35,9 @@
                         </tbody>
                     </table>
 
-                    <a href="{{ route('restaurant.dish.rating.create', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug ]) }}">Donner votre avis sur ce plat</a>
+                    <a
+                        href="{{ route('restaurant.dish.rating.create', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug]) }}">Donner
+                        votre avis sur ce plat</a>
                 </div>
             </div>
         </div>
@@ -45,6 +47,15 @@
         <div class="row">
             <div class="col-md-7">
                 <h3 class="my-5">Avis</h3>
+                <div class="row">
+                    @foreach ($dish->ratings as $rating)
+                        <div class="col-12">
+                            <div class="border rounded p-4 shadow mb-4">
+                            @include('components.rating-card')
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>

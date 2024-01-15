@@ -42,4 +42,12 @@ class Restaurant extends Model
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
+
+    public function ratings(): HasMany {
+        return $this->hasMany(RestaurantRating::class);
+    }
+
+    public function note() {
+        return count($this->ratings);
+    }
 }

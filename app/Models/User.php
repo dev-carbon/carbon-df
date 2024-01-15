@@ -47,4 +47,18 @@ class User extends Authenticatable
     public function restaurants(): HasMany {
         return $this->hasMany(Restaurant::class);
     }
+
+    public function dishes(): HasMany {
+        return $this->hasMany(Dish::class);
+    }
+
+    public function restaurantRatings(): HasMany {
+        return $this->hasMany(RestaurantRating::class);
+    }
+
+    public function dishRatings(): HasMany {
+        return $this->hasMany(DishRating::class);
+    }
+
+
 }

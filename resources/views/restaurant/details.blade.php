@@ -17,6 +17,8 @@
                 <p>{{ $restaurant->phone }}</p>
                 <p>{{ $restaurant->address() }}</p>
                 <p class="text-muted">{{ $restaurant->description }}</p>
+                <p><i class="fas fa-star text-warning"></i>{{ $restaurant->note() }}/5</p>
+                <a href="{{ route('restaurant.rating.create', $restaurant)}}">Donner votre avis</a>
             </div>
         </div>
 
@@ -26,6 +28,17 @@
                 @foreach ($restaurant->dishes as $dish)
                     <div class="col-md-4">
                         @include('components.dish-card')
+                    </div>
+                @endforeach
+            </div>
+        </section>
+
+        <section>
+            <h3>Les avis</h3>
+            <div class="row">
+                @foreach ($restaurant->ratings as $rating)
+                    <div class="col-md-4">
+                        @include('components.rating-card')
                     </div>
                 @endforeach
             </div>
