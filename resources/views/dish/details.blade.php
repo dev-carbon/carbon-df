@@ -3,7 +3,6 @@
 @section('title', 'Détails plat')
 
 @section('content')
-
     <section>
         <h1 class="my-4">@yield('title')</h1>
 
@@ -51,7 +50,7 @@
                     @foreach ($dish->ratings as $rating)
                         <div class="col-12">
                             <div class="border rounded p-4 shadow mb-4">
-                            @include('components.rating-card')
+                                @include('components.rating-card')
                             </div>
                         </div>
                     @endforeach

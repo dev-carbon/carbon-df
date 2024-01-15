@@ -15,11 +15,15 @@ Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth')-
 
 Route::prefix('restaurant')->name('restaurant.')->group(function () {
     Route::get('/{restaurant}', [\App\Http\Controllers\RestaurantController::class, 'show'])->name('show');
+    Route::get('/{restaurant}/contact', [\App\Http\Controllers\RestaurantController::class, 'contact'])->name('contact');
+    Route::post('/{restaurant}/contact', [\App\Http\Controllers\RestaurantController::class, 'contact'])->name('contact');
     Route::get('/{restaurant}/rate', [\App\Http\Controllers\RestaurantController::class, 'createRate'])->middleware('auth')->name('rating.create');
     Route::post('/{restaurant}/rate', [\App\Http\Controllers\RestaurantController::class, 'storeRate'])->middleware('auth')->name('rating.store');
+    Route::delete('/{restaurant}/rate/{rating}', [\App\Http\Controllers\RestaurantController::class, 'deleteRate'])->middleware('auth')->name('rating.destroy');
     Route::get('/{restaurant}/dish/{dish}-{slug}', [\App\Http\Controllers\DishController::class, 'show'])->middleware('auth')->name('dish.show');
     Route::get('/{restaurant}/dish/{dish}-{slug}/rate', [\App\Http\Controllers\DishController::class, 'createRate'])->middleware('auth')->name('dish.rating.create');
     Route::post('/{restaurant}/dish/{dish}-{slug}/rate', [\App\Http\Controllers\DishController::class, 'storeRate'])->middleware('auth')->name('dish.rating.store');
+    Route::delete('/{restaurant}/dish/{dish}-{slug}/rate/{rating}', [\App\Http\Controllers\DishController::class, 'deleteRate'])->middleware('auth')->name('dish.rating.destroy');
 });
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {

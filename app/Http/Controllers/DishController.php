@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DishRatingFormRequest;
 use App\Models\Dish;
+use App\Models\DishRating;
 use App\Models\Restaurant;
+use Illuminate\Http\Client\Request;
 
 class DishController extends Controller
 {
@@ -32,5 +34,8 @@ class DishController extends Controller
         return redirect()->route('restaurant.dish.show', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug])->with('success', 'Votre avis a bien été enregistrée');
     }
 
-    public function deleteRate(Dish $dish) {}
+    public function deleteRate(Restaurant $restaurant, Dish $dish, string $slug, DishRating $rating) {
+        $rating->delete();
+        return redirect()->route('restaurant.dish.show', ['restaurant' => $restaurant, 'dish' => $dish,'slug' => $dish->slug])->with('success', 'Votre avis a bien été supprimée');
+    }
 }
