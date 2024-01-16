@@ -32,6 +32,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.restaurant.index') }}">Utilisateurs</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.speciality.index') }}">Spécialités</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

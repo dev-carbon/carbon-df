@@ -27,8 +27,10 @@ Route::prefix('restaurant')->name('restaurant.')->group(function () {
 });
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('restaurant', App\Http\Controllers\Admin\RestaurantController::class);
+    Route::resource('speciality', App\Http\Controllers\Admin\SpecialityController::class);
     Route::prefix('restaurant')->name('restaurant.')->group(function () {
         Route::get('{restaurant}/dish', [App\Http\Controllers\Admin\DishController::class, 'create'])->name('dish.create');
         Route::post('{restaurant}/dish', [App\Http\Controllers\Admin\DishController::class, 'store'])->name('dish.store');

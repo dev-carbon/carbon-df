@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class SpecialityController extends Controller
 {
- 
+
     public function index()
     {
         $specialities = Speciality::all();
@@ -26,7 +26,7 @@ class SpecialityController extends Controller
             'description' => 'Hello Carbon Speciality',
         ]);
         return view('admin.speciality.form', [
-           'speciality' => $speciality
+            'speciality' => $speciality
         ]);
     }
 
@@ -45,20 +45,26 @@ class SpecialityController extends Controller
         return redirect()->route('admin.speciality.index')->with('success', 'Specalité ajoutée');
     }
 
-    public function show(string $id)
+    public function edit(Speciality $speciality)
     {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
+        return view('admin.speciality.form', [
+            'speciality' => $speciality
+        ]);
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(SpecialityFormRequest $request, Speciality $speciality)
     {
-        //
+        $speciality->name = $request->name;
+        $speciality->description = $request->description;
+        $speciality->save();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = $image->store('images/speciality', 'public');
+            $speciality->image_path = $filename;
+            $speciality->save();
+        }
+        return redirect()->route('admin.speciality.index')->with('success', 'Specalité modifiée');
     }
 
     public function destroy(Speciality $speciality)
