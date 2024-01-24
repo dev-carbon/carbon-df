@@ -3,46 +3,64 @@
 @section('title', 'Détails Restaurant')
 
 @section('content')
-        <h1>@yield('title')</h1>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-7">
+                    @if ($restaurant->images->count())
+                        <img src="{{ asset($restaurant->images[0]->image_path) }}" alt="Restaurant Image"
+                            class="image restaurant-image">
+                    @else
+                        <img src="https://via.placeholder.com/800x600" alt="Restaurant Image" class="image restaurant-image">
+                    @endif
+                </div>
 
-        <div class="row">
-            <div class="col-md-7">
-                <img src="{{ asset($restaurant->images[0]->image_path) }}" class="img-fluid" alt="">
-            </div>
-
-            <div class="col-md-5 bg-light rounded">
-                <h3>{{ $restaurant->name }}</h3>
-                <p>{{ $restaurant->speciality }}</p>
-                <p>{{ $restaurant->phone }}</p>
-                <p>{{ $restaurant->address() }}</p>
-                <p class="text-muted">{{ $restaurant->description }}</p>
-                <p><i class="fas fa-star text-warning"></i>{{ $restaurant->note() }}/5</p>
-                <a href="{{ route('restaurant.contact', $restaurant) }}">contacter</a>
-                <a href="{{ route('restaurant.rating.create', $restaurant) }}">Donner votre avis</a>
-            </div>
-        </div>
-
-        <section>
-            <h3 class="my-5">Découvrir les plats</h3>
-            <div class="row">
-                @foreach ($restaurant->dishes as $dish)
-                    <div class="col-md-4">
-                        @include('components.dish-card')
+                <div class="column is-5">
+                    <div class="box">
+                        <h3 class="title is-3">{{ $restaurant->name }}</h3>
+                        <p class="subtitle is-5">{{ $restaurant->speciality->name }}</p>
+                        <p>
+                            <span class="icon">
+                                <i class="fas fa-phone"></i>
+                            </span>
+                            {{ $restaurant->phone }}
+                        </p>
+                        <p class="content">
+                            <span class="icon">
+                                <i class="fas fa-map-marker"></i>
+                            </span>
+                            {{ $restaurant->address() }}
+                        </p>
+                        <p class="content">{{ $restaurant->description }}</p>
+                        <p><i class="fas fa-star is-size-5 has-text-success"></i>&nbsp;<strong>{{ $restaurant->note() }}/5</strong></p>
+                        <a href="{{ route('restaurant.contact', $restaurant) }}" class="button is-info">Contacter</a>
+                        <a href="{{ route('restaurant.rating.create', $restaurant) }}" class="button is-warning">Donner
+                            votre avis</a>
                     </div>
-                @endforeach
+                </div>
             </div>
-        </section>
 
-        <section>
-            <h3>Les avis</h3>
-            <div class="row">
-                @foreach ($restaurant->ratings as $rating)
-                    <div class="col-md-12">
-                        <div class="border rounded p-4 shadow mb-4">
+            <div class="section">
+                <h3 class="title is-3 mb-5">Découvrir les plats</h3>
+                <div class="columns is-multiline">
+                    @foreach ($restaurant->dishes as $dish)
+                        <div class="column is-4">
+                            @include('components.dish-card')
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="title is-3">Les avis</h3>
+                <div class="columns is-multiline">
+                    @foreach ($restaurant->ratings as $rating)
+                        <div class="column is-two-thirds">
                             @include('components.rating-card')
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </section>
-    @endsection
+        </div>
+    </section>
+@endsection

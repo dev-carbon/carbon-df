@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RestaurantFormRequest;
 use App\Models\Dish;
 use App\Models\Restaurant;
+use App\Models\Speciality;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -22,38 +24,45 @@ class RestaurantController extends Controller
     public function create()
     {
         $restaurant = new Restaurant();
+        $specialities = Speciality::all();
         $restaurant->fill([
             'name' => 'Carbon restaurant',
-            'speciality' => 'Bean & Steaks',
             'phone' => '+4200000000',
             'street' => '42 carbon street',
             'postal_code' => '21000',
             'city' => 'Carbon city',
             'description' => 'Hello Carbon Restaurant',
         ]);
-        
+
+        $users = User::whereHas('roles', function ($query) {
+            $query->whereNotIn('name', ['admin', 'manager', 'user']);
+        })->get();
+                
         return view('admin.restaurant.form', [
             'restaurant' => $restaurant,
+            'users' => $users,
+            'specialities' => $specialities
         ]);
     }
 
     public function store(RestaurantFormRequest $request)
     {
         $restaurant = new Restaurant();
-        $restaurant->user_id = auth()->user()->id;
+        $restaurant->owner_id = $request->owner;
         $restaurant->name = $request->name;
-        $restaurant->speciality = $request->speciality;
+        $restaurant->speciality_id = $request->speciality;
         $restaurant->phone = $request->phone;
         $restaurant->street = $request->street;
         $restaurant->postal_code = $request->postal_code;
         $restaurant->city = $request->city;
         $restaurant->description = $request->description;
         $restaurant->slug = \Illuminate\Support\Str::slug($request->name);
+        $restaurant->trending = $request->trending ? 1 : 0;
         $restaurant->save();
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $filename = $image->store('images/restaurants', 'public');
+                $filename = $image->store('public/restaurants', 'public');
                 $restaurantImage = new \App\Models\RestaurantImage();
                 $restaurantImage->restaurant_id = $restaurant->id;
                 $restaurantImage->image_path = $filename;
@@ -71,22 +80,30 @@ class RestaurantController extends Controller
     }
 
     public function edit(Restaurant $restaurant)
-    {        
+    {
+        $specialities = Speciality::all();
+        $users = User::whereHas('roles', function ($query) {
+            $query->whereNotIn('name', ['admin', 'manager', 'user']);
+        })->get();
         return view('admin.restaurant.form', [
+            'specialities' => $specialities,
             'restaurant' => $restaurant,
+            'users' => $users,
         ]);
     }
 
     public function update(RestaurantFormRequest $request, Restaurant $restaurant)
     {
         $restaurant->name = $request->name;
-        $restaurant->speciality = $request->speciality;
+        $restaurant->owner_id = $request->owner;
+        $restaurant->speciality_id = $request->speciality;
         $restaurant->phone = $request->phone;
         $restaurant->street = $request->street;
         $restaurant->postal_code = $request->postal_code;
         $restaurant->city = $request->city;
         $restaurant->description = $request->description;
         $restaurant->slug = \Illuminate\Support\Str::slug($request->name);
+        $restaurant->trending = $request->trending ? 1 : 0;
         $restaurant->save();
 
         if ($request->hasFile('images')) {

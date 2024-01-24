@@ -3,5 +3,5 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <h1>@yield('title')</h1>
+    <h3>@yield('title')</h3>
 @endsection

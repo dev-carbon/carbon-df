@@ -5,7 +5,9 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
         <h1>@yield('title')</h1>
-        <a href="{{ route('admin.speciality.create') }}" class="btn btn-primary">Ajouter</a>
+        <a href="{{ route('admin.speciality.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Ajouter
+        </a>
     </div>
     <table class="table table-striped">
         <thead>
@@ -21,7 +23,7 @@
                 <tr>
                     <td>{{ $speciality->name }}</td>
                     <td>{{ $speciality->description }}</td>
-                    <td><img src="{{ asset($speciality->image_path) }}"  width="42" height="auto" alt="{{ $speciality->name }}"></td>
+                    <td><img src="{{ asset($speciality->image_path) }}" class="rounded-circle"  width="42" height="42" alt="{{ $speciality->name }}"></td>
                     <td>
                         <div class="d-flex justify-content-end column-gap-1">
                             <a href="{{ route('admin.speciality.edit', $speciality)}}" class="btn btn-secondary">Modifier</a>

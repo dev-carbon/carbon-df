@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+    font-size: 12px;
+}
+
+html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.app {
+    position: relative;
+    top: 42px;
+}
+
+body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.admin-navbar {
+    height: 42px;
+    background-color: cadetblue !important;
+}
+
+.admin-navbar .nav-link {
+    color: wheat;
+}
+
+.admin-sidebar {
+    background-color: whitesmoke;
+    height: 100%;
+    position: fixed;
+    padding: 1rem 0;
+    border-right: solid 1px #c2c5fd;
+}
+
+.admin-sidebar .nav-item {
+    font-weight: bold;
+    border-radius: 1rem;
+    margin-inline: .5rem;
+    margin-bottom: 1rem;
+}
+
+.admin-sidebar .nav-item {
+    color: #333;
+}
+
+.admin-sidebar .nav-item .nav-link {
+    color: #333;
+}
+
+.admin-sidebar .nav-item:hover {
+    background-color: white;
+}
+
+.admin-sidebar .nav-item:hover .nav-link {
+    color: cadetblue;
+}
+
+
+td {
+    vertical-align: middle;
+}
+
+.btn {
+    padding: 0.1rem 0.5rem;
+}
+
+.btn-primary {
+    background-color: cadetblue;
+    border: 1px solid cadetblue;
+    color: wheat;
+    transition: background-color 0.242s ease-out;
+}
+
+.btn-primary:hover {
+    background-color: rgb(75, 123, 126);
+    border: 1px solid rgb(75, 123, 126);
+    color: wheat;
+    opacity: 1;
+}
+
+.btn-secondary {
+    background-color: gray;
+    border: 1px solid gray;
+    color: whitesmoke;
+}
+
+
+.btn-danger {
+    background-color: crimson;
+    border: 1px solid crimson;
+    color: whitesmoke;
+}
+
+.text-primary {
+    color: cadetblue !important;
+}

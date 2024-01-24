@@ -10,37 +10,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <title>@yield('title') | Admin</title>
 </head>
 
 <body>
-    <div class="container">
-        @include('components.header')
-        @include('shared.flash')
-        <div class="row mt-4">
-            <div class="col-md-3 col-lg-2">
-                <nav id="sidebar" class="bg-light sidebar">
-                    <div class="position-sticky">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.restaurant.index') }}">Restaurants</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.restaurant.index') }}">Utilisateurs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.speciality.index') }}">Spécialités</a>
-                            </li>
-                        </ul>
+    @include('admin.components.navbar')
+
+    <div class="app">
+        <div class="container-fluid">
+
+            @include('shared.flash')
+
+            <div class="row">
+                <div class="col-md-3 col-lg-2">
+                    @include('admin.components.sidebar')
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    <div class="py-4">
+                        @yield('content')
                     </div>
-                </nav>
-            </div>
-            <div class="col-md-9 col-lg-10">
-                @yield('content')
+                </div>
             </div>
         </div>
     </div>

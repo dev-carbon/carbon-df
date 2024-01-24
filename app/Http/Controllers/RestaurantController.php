@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Admin\RestaurantFormRequest;
 use App\Http\Requests\RestaurantRatingFormRequest;
 use App\Models\Dish;
 use App\Models\Restaurant;
@@ -61,5 +60,20 @@ class RestaurantController extends Controller
             return redirect()->route('restaurant.show', ['restaurant' => $restaurant])->with('success', 'Votre message a bien été envoyé');
         }
         return view('restaurant.contact', ['restaurant' => $restaurant]);
+    }
+
+    public function list() {
+        $restaurants = Restaurant::orderBy('created_at', 'desc')->paginate(12);
+        return view('restaurant.list', [
+            'restaurants' => $restaurants,
+        ]);
+    }
+
+    public function trending() {
+        $restaurants = Restaurant::where('trending', 1)->orderBy('created_at', 'desc')->paginate(12);
+        return view('restaurant.list', [
+            'title' => 'Restaurants à l\'acffiche',
+            'restaurants' => $restaurants,
+        ]);
     }
 }

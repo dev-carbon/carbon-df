@@ -9,12 +9,15 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <h3>Plats</h3>
-        <a href="{{ route('admin.restaurant.dish.create', ['restaurant' => $restaurant]) }}" class="btn btn-primary">Ajouter un plat</a>
+        <a href="{{ route('admin.restaurant.dish.create', ['restaurant' => $restaurant]) }}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Ajouter
+        </a>
     </div>
 
     <table class="table table-striped">
         <thead>
             <tr>
+                <th></th>
                 <th>Nom</th>
                 <th>prix</th>
                 <th>description</th>
@@ -24,6 +27,7 @@
         <tbody>
             @foreach ($restaurant->dishes as $dish)
                 <tr>
+                    <td><img src="{{ asset($dish->images[0]->image_path) }}" class="rounded-circle"  width="42" height="42" alt="{{ $dish->name }}"></td>
                     <td><a href="{{ route('restaurant.dish.show', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug])}}">{{ $dish->name }}</a></td>
                     <td>{{ $dish->price }}</td>
                     <td>{{ $dish->description }}</td>

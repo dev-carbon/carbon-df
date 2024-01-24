@@ -1,32 +1,79 @@
 @extends('layout')
 
-@section('title', 'Contact Restaurant')
+@section('title', 'Contacter le Restaurant')
 
 @section('content')
-        <h1>@yield('title')</h1>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">@yield('title')</h1>
 
-        <div class="row">
-            <div class="col-md-7">
-                <form action="{{ route('restaurant.contact', $restaurant) }}" method="POST">
-                    @csrf
-                    @include('components.input', ['label' => 'Nom', 'name' => 'name'])
-                    @include('components.input', ['label' => 'Email', 'name' => 'email'])
-                    @include('components.input', ['label' => 'Objet', 'name' => 'object'])
-                    @include('components.textarea', ['label' => 'Message', 'name' => 'message'])
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                </form>
-            </div>
+            <div class="columns">
+                <div class="column is-two-fifths">
+                    <form action="{{ route('restaurant.contact', $restaurant) }}" method="POST">
+                        @csrf
+                        <div class="field">
+                            <label class="label">Nom</label>
+                            <div class="control">
+                                <input class="input" type="text" name="name" placeholder="Votre nom" required>
+                            </div>
+                        </div>
 
-            <div class="col-md-5 bg-light rounded">
-                <h3>{{ $restaurant->name }}</h3>
-                <p>{{ $restaurant->speciality }}</p>
-                <p>{{ $restaurant->phone }}</p>
-                <p>{{ $restaurant->address() }}</p>
-                <p class="text-muted">{{ $restaurant->description }}</p>
-                <img src="{{ asset($restaurant->images[0]->image_path) }}" width="200px" height="auto" class="img-fluid" alt="">
-                <p><i class="fas fa-star text-warning"></i>{{ $restaurant->note() }}/5</p>
-                <a href="{{ route('restaurant.contact', $restaurant) }}">contacter</a>
-                <a href="{{ route('restaurant.rating.create', $restaurant) }}">Donner votre avis</a>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                                <input class="input" type="email" name="email" placeholder="Votre adresse email" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Objet</label>
+                            <div class="control">
+                                <input class="input" type="text" name="object" placeholder="Objet de votre message" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Message</label>
+                            <div class="control">
+                                <textarea class="textarea" name="message" placeholder="Votre message" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-primary">
+                                    <span>Envoyer</span>
+                                    <span class="icon">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="column">
+                    <div class="box">
+                        <h3 class="title is-3">{{ $restaurant->name }}</h3>
+                        <p class="subtitle is-5">{{ $restaurant->speciality->name }}</p>
+                        <p><i class="fas fa-star is-size-5 has-text-success"></i>&nbsp;<strong>{{ $restaurant->note() }}/5</strong></p>
+                        <p>
+                            <span class="icon">
+                                <i class="fas fa-phone"></i>
+                            </span>
+                            {{ $restaurant->phone }}
+                        </p>
+                        <p class="content">
+                            <span class="icon">
+                                <i class="fas fa-map-marker"></i>
+                            </span>
+                            {{ $restaurant->address() }}
+                        </p>
+                        <p class="content">{{ $restaurant->description }}</p>
+                        <a href="{{ route('restaurant.rating.create', $restaurant) }}" class="button is-warning">Donner votre avis</a>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 @endsection

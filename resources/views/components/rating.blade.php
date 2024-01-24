@@ -10,7 +10,7 @@
 @endphp
 <div @class([$class])>
     <label for="{{ $name }}">{{ $label }}</label>
-    <div class="rating text-success display-4" data-rate-value=0></div>
+    <div class="rating has-text-success is-size-2" data-rate-value=0></div>
     <script type="text/javascript">
         $(".rating").rate({
             cursor: 'pointer',

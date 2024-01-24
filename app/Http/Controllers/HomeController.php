@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index() {
-        $restaurants = Restaurant::orderBy('created_at', 'desc')->paginate(1);
+        
+        $latestRestaurants = Restaurant::latest()->paginate(5);
+        $trendingrestaurants = Restaurant::where('trending', '=', 1)->paginate(5);
+        // $ratedRestaurant = Restaurant::where('rated', '=', 1)->paginate(5);
+        
         return view('home', [
-            'restaurants' => $restaurants
+            'latestRestaurants' => $latestRestaurants,
+            'trendingRestaurants' => $trendingrestaurants,
+            // 'ratedRestaurant' => $ratedRestaurant
         ]);
+    }
+
+    public function aboutUs() {
+        return view('about-us');
     }
 }

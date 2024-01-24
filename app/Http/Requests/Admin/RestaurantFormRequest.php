@@ -23,14 +23,16 @@ class RestaurantFormRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'owner' => ['required'],
             'speciality' => ['required'],
             'phone'=> ['required', 'min:10', 'max:14'],
             'street' => ['required'],
             'postal_code' => ['required'],
             'city' => ['required'],
             'description' => ['required'],
-            'images' => ['required', 'array'],
+            'images' => ['array'],
             'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:5120'],
+            'trending' => [],
         ];
     }
 }

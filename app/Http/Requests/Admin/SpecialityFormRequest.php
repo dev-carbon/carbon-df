@@ -24,7 +24,6 @@ class SpecialityFormRequest extends FormRequest
         return [
             'name' => ['required'],
             'description' => ['required'],
-            'image' => ['required'],
             'image.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:5120'],
         ];
     }

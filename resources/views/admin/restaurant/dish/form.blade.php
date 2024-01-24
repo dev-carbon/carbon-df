@@ -7,8 +7,7 @@
         <h1>@yield('title')
     </div>
 
-    <form
-        enctype="multipart/form-data"
+    <form enctype="multipart/form-data"
         action="{{ route($dish->exists ? 'admin.restaurant.dish.update' : 'admin.restaurant.dish.store', ['restaurant' => $restaurant, 'dish' => $dish]) }}"
         method="POST">
         @csrf
@@ -35,12 +34,13 @@
             'value' => $dish->description,
         ])
 
-        @include('components.input', [
-            'class' => 'mb-3',
-            'label' => 'Images',
-            'type' => 'file',
-            'name' => 'images[]',
-        ])
+        <div class="mb-3">
+            <label>Images</label>
+            <input type="file" name="images[]" class="form-control">
+            @error('images')
+                <span class="small text-danger">{{ $message }}</span>
+            @enderror
+        </div>
 
         <button type="submit" class="btn btn-primary">
             {{ $dish->exists ? 'Modifier' : 'Ajouter' }}
