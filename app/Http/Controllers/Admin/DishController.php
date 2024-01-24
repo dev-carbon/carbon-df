@@ -28,6 +28,7 @@ class DishController extends Controller
     {
         $dish = new Dish();
         $dish->name = $request->name;
+        $dish->restaurant_id = $restaurant->id;
         $dish->slug = \Illuminate\Support\Str::slug($request->name);
         $dish->price = $request->price;
         $dish->description = $request->description;

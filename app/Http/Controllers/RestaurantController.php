@@ -12,7 +12,6 @@ class RestaurantController extends Controller
 {
     public function show(Restaurant $restaurant)
     {
-        $restaurant->dishes = Dish::all();
         return view('restaurant.details', ['restaurant' => $restaurant]);
     }
 

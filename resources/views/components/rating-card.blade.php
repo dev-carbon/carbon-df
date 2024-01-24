@@ -7,12 +7,15 @@
     <p class="has-text-grey">{{ $rating->created_at }}</p>
 
     <div class="mt-3">
-        @if ($rating->user_id == auth()->user()->id)
-            @if ($rating instanceof \App\Models\RestaurantRating)
-                <form method="post" action="{{ route('restaurant.rating.destroy', ['restaurant' => $restaurant, 'rating' => $rating]) }}">
-            @elseif($rating instanceof \App\Models\DishRating)
-                <form method="post" action="{{ route('restaurant.dish.rating.destroy', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug, 'rating' => $rating]) }}">
-            @endif
+        @auth
+            @if ($rating->user_id == auth()->user()->id)
+                @if ($rating instanceof \App\Models\RestaurantRating)
+                    <form method="post"
+                        action="{{ route('restaurant.rating.destroy', ['restaurant' => $restaurant, 'rating' => $rating]) }}">
+                    @elseif($rating instanceof \App\Models\DishRating)
+                        <form method="post"
+                            action="{{ route('restaurant.dish.rating.destroy', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug, 'rating' => $rating]) }}">
+                @endif
                 @csrf
                 @method('DELETE')
                 <button class="button is-danger is-small">
@@ -20,7 +23,9 @@
                         <i class="fas fa-trash-alt"></i>
                     </span>
                 </button>
-            </form>
-        @endif
+                </form>
+            @endif
+        @endauth
+
     </div>
 </div>

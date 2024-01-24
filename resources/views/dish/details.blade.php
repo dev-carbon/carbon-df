@@ -3,55 +3,50 @@
 @section('title', 'Détails plat')
 
 @section('content')
-    <section>
-        <h1 class="my-4">@yield('title')</h1>
-
-        <div class="row">
-            <div class="col-md-8">
-                <img src="{{ asset($dish->images[0]->image_path) }}" class="img-fluid" alt="">
+    <section class="section">
+        <div class="columns">
+            <div class="column is-4">
+                <img src="{{ asset($dish->images[0]->image_path) }}" alt="Dish Image">
             </div>
 
-            <div class="col-md-4 bg-light rounded p-4">
-                <h3>{{ $dish->name }}</h3>
-                <h5 class="text-primary">{{ Number::currency($dish->price, in: 'EUR') }}</h5>
-                <p class="text-muted">{{ $dish->description }}</p>
+            <div class="column rounded p-4">
+                <h2 class="title is-2">{{ $dish->name }}</h2>
+                <h4 class="subtitle is-4 has-text-primary">{{ Number::currency($dish->price, in: 'EUR') }}</h4>
+                <p class="subtitle is-6 has-text-grey">{{ $dish->description }}</p>
 
-                <div class="mt-5">
-                    <h3>Ingrédients</h3>
+                {{-- Ingredient --}}
+                {{-- <div class="mt-5">
+                    <h3 class="title is-3">Ingrédients</h3>
 
-                    <table class="table table-striped">
+                    <table class="table is-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Ingredient</th>
-                                <th scope="col">Quantité</th>
+                                <th>Ingredient</th>
+                                <th>Quantité</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">Tomate</th>
+                                <td>Tomate</td>
                                 <td>1</td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <a
-                        href="{{ route('restaurant.dish.rating.create', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug]) }}">Donner
-                        votre avis sur ce plat</a>
-                </div>
+                </div> --}}
+                <a href="{{ route('restaurant.dish.rating.create', ['restaurant' => $restaurant, 'dish' => $dish, 'slug' => $dish->slug]) }}"
+                    class="button is-info">Donner votre avis sur ce plat</a>
             </div>
         </div>
     </section>
 
-    <section>
-        <div class="row">
-            <div class="col-md-7">
-                <h3 class="my-5">Avis</h3>
-                <div class="row">
+    <section class="section">
+        <div class="columns">
+            <div class="column is-three-quarters">
+                <h2 class="title is-2 my-5">Avis</h2>
+                <div class="columns is-multiline">
                     @foreach ($dish->ratings as $rating)
-                        <div class="col-12">
-                            <div class="border rounded p-4 shadow mb-4">
-                                @include('components.rating-card')
-                            </div>
+                        <div class="column is-two-thirds">
+                            @include('components.rating-card')
                         </div>
                     @endforeach
                 </div>
