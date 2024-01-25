@@ -6,6 +6,8 @@
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
             </div>
         </li>
+
+        @role('admin|manager')
         <li class="nav-item">
             <div class="d-flex align-items-center px-3">
                 <i class="fas fa-meteor"></i>
@@ -18,6 +20,9 @@
                 <a class="nav-link" href="{{ route('admin.restaurant.index') }}">Restaurants</a>
             </div>
         </li>
+        @endrole
+
+        @role('admin')
         <li class="nav-item">
             <div class="d-flex align-items-center px-3">
                 <i class="fas fa-users"></i>
@@ -30,5 +35,6 @@
                 <a class="nav-link" href="{{ route('admin.role.permission') }}">Roles & Permissions</a>
             </div>
         </li>
+        @endrole
     </ul>
 </nav>

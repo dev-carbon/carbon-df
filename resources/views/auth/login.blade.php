@@ -69,7 +69,7 @@
                                 @if (Route::has('register'))
                                     <p class="content">Pas encore de compte ? <a
                                             href="{{ route('register') }}" class="has-text-info">Insrivez-vous
-                                            maintenant ?</a>
+                                            maintenant</a>
                                     </p>
                                 @endif
                             </div>

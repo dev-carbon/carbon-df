@@ -50,7 +50,7 @@ Route::prefix('restaurant')->name('restaurant.')->group(function () {
 
 
 // Admin routes
-Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'role:admin|manager'])->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('speciality', App\Http\Controllers\Admin\SpecialityController::class);
@@ -72,7 +72,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
 // Breeze routes
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

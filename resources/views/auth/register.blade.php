@@ -74,7 +74,7 @@
                                 @if (Route::has('login'))
                                     <p class="content">Déjà inscrit ? <a
                                             href="{{ route('login') }}" class="has-text-info">Connectez-vous
-                                            maintenant ?</a>
+                                            maintenant</a>
                                     </p>
                                 @endif
                             </div>

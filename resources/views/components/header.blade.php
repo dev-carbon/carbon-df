@@ -27,11 +27,14 @@
                         <a href="{{ route('profile.edit') }}" class="navbar-item">
                             Profil
                         </a>
-                        <a href="{{ route('dashboard') }}" class="navbar-item">
-                            Tableau de bord
-                        </a>
+                        @hasanyrole('admin|manager')
+                            <a href="{{ route('dashboard') }}" class="navbar-item">
+                                Tableau de bord
+                            </a>
+                        @endhasanyrole
                         <hr class="navbar-divider">
-                        <a href="{{ route('logout') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a href="{{ route('logout') }}" class="navbar-item"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Se déconnecter
                         </a>
 
