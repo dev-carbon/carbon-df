@@ -12,6 +12,7 @@
         <title>@yield('title') | DailyFoods</title>
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/app-Sr4e_uwk.css') }}">
 </head>
 
 <body class="has-background-white-bis">
