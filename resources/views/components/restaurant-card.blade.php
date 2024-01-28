@@ -1,4 +1,4 @@
-<div class="card restaurant-card">
+<div class="card restaurant-card is-flex">
     <a href="{{ route('restaurant.show', $restaurant) }}"></a>
     <div class="card-image">
         {{-- <figure class="image is-4by3"> --}}
