@@ -10,9 +10,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         @yield('scripts')
         <title>@yield('title') | DailyFoods</title>
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/assets/app-Sr4e_uwk.css') }}">
 </head>
 
 <body class="has-background-white-bis">
