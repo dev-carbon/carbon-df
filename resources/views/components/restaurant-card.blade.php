@@ -1,13 +1,14 @@
 <div class="card restaurant-card">
-    <a href="{{ route('restaurant.show', $restaurant)}}"></a>
+    <a href="{{ route('restaurant.show', $restaurant) }}"></a>
     <div class="card-image">
-        <figure class="image is-4by3">
+        {{-- <figure class="image is-4by3"> --}}
             @if ($restaurant->images->count())
-                <img src={{ asset($restaurant->images[0]->image_path) }}" alt="Restaurant Image" class="restaurant-image">
+                <img src="{{ asset($restaurant->images[0]->image_path) }}" alt="Restaurant Image"
+                    class="image restaurant-image">
             @else
-                <img src="https://via.placeholder.com/800x600" alt="Restaurant Image" class="restaurant-image">
+                <img src="https://via.placeholder.com/800x600" alt="Restaurant Image" class="image restaurant-image">
             @endif
-        </figure>
+        {{-- </figure> --}}
     </div>
     <div class="card-content">
         <div class="content">
