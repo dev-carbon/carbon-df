@@ -19,7 +19,8 @@
                     <form>
                         <div class="field is-grouped is-grouped-centered mb-5">
                             <p class="control has-icons-left">
-                                <input class="input is-rounded" type="text" placeholder="Rechercher un restaurant, un plat, etc.">
+                                <input class="input is-rounded" type="text"
+                                    placeholder="Rechercher un restaurant, un plat, etc.">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-search"></i>
                                 </span>
@@ -48,7 +49,8 @@
                     <h2 class="title is-2 has-text-info">Restaurants à l'affiche</h2>
                 </div>
                 <div class="column is-narrow">
-                    <a href="{{ route('restaurant.trending') }}" class="button is-light has-text-info has-text-weight-bold">Voir tout</a>
+                    <a href="{{ route('restaurant.trending') }}"
+                        class="button is-light has-text-info has-text-weight-bold">Voir tout</a>
                 </div>
             </div>
             <div class="columns is-multiline">
@@ -68,11 +70,12 @@
                     <h2 class="title is-2 has-text-info">Nos restaurants</h2>
                 </div>
                 <div class="column is-narrow">
-                    <a href="{{ route('restaurant.list') }}" class="button is-light has-text-info has-text-weight-bold">Voir tout</a>
+                    <a href="{{ route('restaurant.list') }}" class="button is-light has-text-info has-text-weight-bold">Voir
+                        tout</a>
                 </div>
             </div>
-            
-            
+
+
             <div class="columns is-multiline">
                 @foreach ($latestRestaurants as $restaurant)
                     <div class="column is-flex">
@@ -84,37 +87,40 @@
     </section>
 
     <!-- Section Nos Services -->
-<section id="services" class="section">
-    <div class="container">
-        <h2 class="title is-2 has-text-centered mb-5">Nos services</h2>
-        
-        <div class="columns">
-            <!-- Service 1 -->
-            <div class="column">
-                <div class="box">
-                    <h3 class="title has-text-centered is-4">Service 1</h3>
-                    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="title is-2 has-text-centered mb-5">Nos services</h2>
 
-            <!-- Service 2 -->
-            <div class="column">
-                <div class="box">
-                    <h3 class="title has-text-centered is-4">Service 2</h3>
-                    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="columns">
+                <!-- Service 1 -->
+                <div class="column">
+                    <div class="box">
+                        <h3 class="title has-text-centered is-4">Service 1</h3>
+                        <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Service 3 -->
-            <div class="column">
-                <div class="box">
-                    <h3 class="title has-text-centered is-4">Service 3</h3>
-                    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <!-- Service 2 -->
+                <div class="column">
+                    <div class="box">
+                        <h3 class="title has-text-centered is-4">Service 2</h3>
+                        <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="column">
+                    <div class="box">
+                        <h3 class="title has-text-centered is-4">Service 3</h3>
+                        <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- Section Nous Contacter -->
