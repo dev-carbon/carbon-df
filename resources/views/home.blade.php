@@ -53,7 +53,7 @@
             </div>
             <div class="columns is-multiline">
                 @foreach ($trendingRestaurants as $restaurant)
-                    <div class="column">
+                    <div class="column is-flex">
                         @include('components.restaurant-card')
                     </div>
                 @endforeach
@@ -75,7 +75,7 @@
             
             <div class="columns is-multiline">
                 @foreach ($latestRestaurants as $restaurant)
-                    <div class="column">
+                    <div class="column is-flex">
                         @include('components.restaurant-card')
                     </div>
                 @endforeach
